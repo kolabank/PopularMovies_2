@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="detailedActivityLinearLayoutHeight">200dp</dimen>
+    <dimen name="moviesDetailsFont">17sp</dimen>
+    <dimen name="synopisFont">16sp</dimen>
+    <dimen name="detailedThumbnailWidth">150dp</dimen>
+    <dimen name="detailedThumbnailHeight">200dp</dimen>
+    <dimen name="review_author">16sp</dimen>
+
+</resources>

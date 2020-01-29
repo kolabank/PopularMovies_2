@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<android.support.constraint.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailedActivity">
+
+
+    <TextView
+        android:id="@+id/tv_DetailedTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/detailedActMovieTitleBackround"
+        android:padding="10dp"
+        android:textColor="@color/detailedTitleFont"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_DetailedThumbnail"
+        android:layout_width="@dimen/detailedThumbnailWidth"
+        android:layout_height="@dimen/detailedThumbnailHeight"
+        android:layout_below="@id/tv_DetailedTitle"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/content_desc"
+        android:scaleType="fitStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_DetailedTitle" />
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="@dimen/detailedActivityLinearLayoutHeight"
+        android:layout_below="@id/tv_DetailedTitle"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:layout_toEndOf="@id/iv_DetailedThumbnail"
+        android:gravity="center_vertical|start"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_DetailedThumbnail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_DetailedTitle">
+
+        <TextView
+            android:id="@+id/tv_DetailedReleaseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/moviesDetailsFont" />
+
+
+        <TextView
+            android:id="@+id/tv_DetailedUserRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:textSize="@dimen/moviesDetailsFont" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_DetailedPlotSynopsis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_DetailedThumbnail"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="28dp"
+        android:textSize="@dimen/synopisFont"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_DetailedThumbnail" />
+
+    <Button
+        android:id="@+id/bt_trailer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/detailedActMovieTitleBackround"
+        android:onClick="onClickShowTrailer"
+        android:text="VIEW TRAILERS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_DetailedPlotSynopsis" />
+
+    <Button
+        android:id="@+id/bt_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="68dp"
+        android:onClick="onClickShowReviews"
+        android:text="SEE REVIEWS"
+        android:background="@color/detailedActMovieTitleBackround"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_DetailedPlotSynopsis" />
+
+
+</android.support.constraint.ConstraintLayout>
+
+</ScrollView>
