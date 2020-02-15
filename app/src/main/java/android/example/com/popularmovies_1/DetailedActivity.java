@@ -75,13 +75,34 @@ public class DetailedActivity extends AppCompatActivity {
         if (id==R.id.addFavourites){
 
 
-        FavourtiesEntry favourtiesEntry = new FavourtiesEntry(movieReference,thumbNailString);
-         favDB.favouritesDao().insertFavourite(favourtiesEntry);
-         finish();
+        final FavourtiesEntry favourtiesEntry = new FavourtiesEntry(movieReference,thumbNailString);
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+
+                favDB.favouritesDao().insertFavourite(favourtiesEntry);
+                finish();
+            }
+        });
+
 
         }
 
         else if(id==R.id.removeFavourites){
+
+
+          final  FavourtiesEntry favourtiesEntry = new FavourtiesEntry(movieReference,thumbNailString);
+
+            AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                @Override
+                public void run() {
+
+                    favDB.favouritesDao().deleteFavourite(favourtiesEntry);
+
+                    finish();
+                }
+            });
 
 
         }

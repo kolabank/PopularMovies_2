@@ -1,6 +1,9 @@
 package android.example.com.popularmovies_1;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.media.Image;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,27 +33,8 @@ public class FavouritesActivity extends AppCompatActivity {
 
         setTitle("Favourites");
 
+        updateDisplay();
 
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        int rowCount= favDB.favouritesDao().getCount();
-
-        thumbNailArray = new String[rowCount];
-
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2); //GridLayoutManager takes 2 parameters
-        rv_Favourites.setLayoutManager(gridLayoutManager);
-        rv_Favourites.setHasFixedSize(false);
-
-        thumbNailArray = favDB.favouritesDao().getAllThubNails();
-
-        ThumbnailAdapter thumbnailAdapter = new ThumbnailAdapter(thumbNailArray);
-
-        rv_Favourites.setAdapter(thumbnailAdapter);
 
     }
 
@@ -67,9 +51,40 @@ public class FavouritesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id==R.id.deleteFavourites){
-            favDB.favouritesDao().deleteAllFavourites();
+
+                   favDB.favouritesDao().deleteAllFavourites();
+                   updateDisplay();
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void updateDisplay(){
+
+        int rowCount= favDB.favouritesDao().getCount();
+
+        thumbNailArray = new String[rowCount];
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2); //GridLayoutManager takes 2 parameters
+        rv_Favourites.setLayoutManager(gridLayoutManager);
+        rv_Favourites.setHasFixedSize(false);
+
+        LiveData <String[]>thumbNailArray;
+
+        thumbNailArray = favDB.favouritesDao().getAllThubNails();
+
+        thumbNailArray.observe(this, new Observer<String[]>() {
+            @Override
+            public void onChanged(@Nullable String[] strings) {
+
+                ThumbnailAdapter thumbnailAdapter = new ThumbnailAdapter(strings);
+
+                rv_Favourites.setAdapter(thumbnailAdapter);
+            }
+        });
+
+    }
+
 }

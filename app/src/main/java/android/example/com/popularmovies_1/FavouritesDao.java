@@ -1,6 +1,7 @@
 package android.example.com.popularmovies_1;
 
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -14,7 +15,6 @@ public interface FavouritesDao {
     @Query("SELECT * FROM favourites ORDER BY id")
 
     FavourtiesEntry[] loadAllFavourites();
-   // List<FavourtiesEntry> loadAllFavourites();
 
     @Insert
     void insertFavourite (FavourtiesEntry favourtiesEntry);
@@ -23,7 +23,7 @@ public interface FavouritesDao {
     int getCount();
 
     @Query("SELECT thumbNailUrl FROM favourites")
-    String[] getAllThubNails();
+    LiveData<String[]> getAllThubNails();
 
     @Delete
     void deleteFavourite (FavourtiesEntry favourtiesEntry);
