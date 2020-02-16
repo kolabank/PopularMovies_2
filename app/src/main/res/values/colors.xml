@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="mainBackgroundColour">#c4d6f2</color>
-    <color name="detailedActMovieTitleBackround">#7398d1</color>
+    <color name="detailedActMovieTitleBackground">#7398d1</color>
     <color name="detailedTitleFont">#cc2504</color>
 </resources>

@@ -2,11 +2,14 @@
     <string name="app_name">Popular Movies</string>
     <string name="content_desc">Movie Thumbnail</string>
     <string name="popularMenuTitle">Most Popular</string>
-    <string name="ratingMentuTitle">Highest Rated</string>
+    <string name="ratingMenuTitle">Highest Rated</string>
+    <string name="trailersText">VIEW TRAILERS</string>
+    <string name="reviewsText">SEE REVIEWS</string>
+
     <string name="detailedUserRating"> User Rating: </string>
     <string name="detailedReleaseDate"> Release Date: </string>
     <string name="trailer">Trailers</string>
-    <string name="noIntenetConnection">No internet connection detected. Kindly connect</string>
+    <string name="noInternetConnection">No internet connection detected. Kindly connect</string>
     <string name="addFavouritesDetailActivity">Add to Favourites</string>
     <string name="removeFavouritesDetailActivity">Remove from Favourites</string>
     <string name="deleteFavourite">Delete all</string>

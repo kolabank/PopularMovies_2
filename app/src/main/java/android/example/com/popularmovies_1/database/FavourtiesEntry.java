@@ -1,4 +1,4 @@
-package android.example.com.popularmovies_1;
+package android.example.com.popularmovies_1.database;
 
 
 import android.arch.persistence.room.Entity;

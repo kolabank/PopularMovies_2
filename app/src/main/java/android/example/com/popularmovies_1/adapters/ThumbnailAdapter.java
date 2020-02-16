@@ -1,6 +1,8 @@
-package android.example.com.popularmovies_1;
+package android.example.com.popularmovies_1.adapters;
 
 import android.content.Context;
+import android.example.com.popularmovies_1.MainActivity;
+import android.example.com.popularmovies_1.R;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

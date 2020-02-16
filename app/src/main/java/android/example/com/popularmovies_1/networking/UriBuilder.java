@@ -1,4 +1,4 @@
-package android.example.com.popularmovies_1;
+package android.example.com.popularmovies_1.networking;
 
 import android.net.Uri;
 

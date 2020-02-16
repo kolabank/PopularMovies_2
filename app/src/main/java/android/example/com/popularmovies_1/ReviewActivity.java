@@ -1,15 +1,14 @@
 package android.example.com.popularmovies_1;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.example.com.popularmovies_1.adapters.ReviewAdapter;
+import android.example.com.popularmovies_1.networking.NetworkUtility;
+import android.example.com.popularmovies_1.networking.UriBuilder;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import java.net.URL;
 import java.util.ArrayList;

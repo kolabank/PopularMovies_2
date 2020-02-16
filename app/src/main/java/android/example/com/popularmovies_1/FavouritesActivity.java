@@ -2,7 +2,9 @@ package android.example.com.popularmovies_1;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
-import android.media.Image;
+import android.arch.lifecycle.ViewModelProviders;
+import android.example.com.popularmovies_1.adapters.ThumbnailAdapter;
+import android.example.com.popularmovies_1.database.AppDataBase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 public class FavouritesActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
         setTitle("Favourites");
 
-        updateDisplay();
+        setupViewModel();
 
 
     }
@@ -53,7 +54,7 @@ public class FavouritesActivity extends AppCompatActivity {
         if (id==R.id.deleteFavourites){
 
                    favDB.favouritesDao().deleteAllFavourites();
-                   updateDisplay();
+                   setupViewModel();
 
         }
 
@@ -61,7 +62,7 @@ public class FavouritesActivity extends AppCompatActivity {
     }
 
 
-    public void updateDisplay(){
+    public void setupViewModel(){
 
         int rowCount= favDB.favouritesDao().getCount();
 
@@ -72,10 +73,8 @@ public class FavouritesActivity extends AppCompatActivity {
         rv_Favourites.setHasFixedSize(false);
 
         LiveData <String[]>thumbNailArray;
-
-        thumbNailArray = favDB.favouritesDao().getAllThubNails();
-
-        thumbNailArray.observe(this, new Observer<String[]>() {
+        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getThumbNailArray().observe(this, new Observer<String[]>() {
             @Override
             public void onChanged(@Nullable String[] strings) {
 

@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="detailedActivityLinearLayoutHeight">200dp</dimen>
-    <dimen name="moviesDetailsFont">17sp</dimen>
-    <dimen name="synopisFont">16sp</dimen>
     <dimen name="detailedThumbnailWidth">150dp</dimen>
     <dimen name="detailedThumbnailHeight">200dp</dimen>
+    <dimen name="detailedActivityLinearLayoutHeight">200dp</dimen>
+    <dimen name="detailedActivityLinearLayoutWidth">250dp</dimen>
+    <dimen name="detailedActivityLinearLayoutMarginStart">12dp</dimen>
+    <dimen name="detailedActivityLinearLayoutMarginTop">32dp</dimen>
+    <dimen name="moviesDetailsFont">17sp</dimen>
+    <dimen name="detailedActivityTextPaddingTop">10dp</dimen>
+
+    <dimen name="detailedActivityButtonWidth">120dp</dimen>
+    <dimen name="detailedActivityButtonMarginTop">40dp</dimen>
+    <dimen name="detailedActivityButtonMarginStartEnd">40dp</dimen>
+
+    <dimen name="reviewTextMarginTop_Bottom">20dp</dimen>
+    <dimen name="reviewTextPadding">10dp</dimen>
+
+    <dimen name="synopsisFont">16sp</dimen>
+
     <dimen name="review_author">16sp</dimen>
+
+    <dimen name="image_padding">6dp</dimen>
 
 </resources>

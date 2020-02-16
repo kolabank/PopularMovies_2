@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:id="@+id/iv_favourite"
         android:scaleType="fitXY"
-        android:padding="6dp"
+        android:padding="@dimen/image_padding"
         android:contentDescription="@string/content_desc"
         />
 
