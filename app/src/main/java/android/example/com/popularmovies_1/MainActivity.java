@@ -83,9 +83,12 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
       //  } else if(isOnline()==0) {
             if (id == R.id.action_popular) {
                 new gettingResponse().execute(popularURLString);
+                setTitle(R.string.popularMenuTitle);
                 return true;
+
             } else if (id == R.id.action_rating) {
                 new gettingResponse().execute(topRatedURLString);
+                setTitle(R.string.ratingMenuTitle);
                 return true;
             }
 

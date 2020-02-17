@@ -13,4 +13,8 @@
     <string name="addFavouritesDetailActivity">Add to Favourites</string>
     <string name="removeFavouritesDetailActivity">Remove from Favourites</string>
     <string name="deleteFavourite">Delete all</string>
+
+
+    <string name="favouritesTitle">Favourites</string>
+    <string name="reviewsTitle">Reviews</string>
 </resources>

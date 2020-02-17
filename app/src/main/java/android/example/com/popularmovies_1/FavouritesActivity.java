@@ -27,6 +27,7 @@ public class FavouritesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
+        setTitle (R.string.favouritesTitle);
 
         rv_Favourites = findViewById(R.id.rv_favourites);
 

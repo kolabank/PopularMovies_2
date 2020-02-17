@@ -6,13 +6,17 @@
         android:id="@+id/addFavourites"
         android:title="@string/addFavouritesDetailActivity"
         android:orderInCategory="1"
-        app:showAsAction="never"
+        app:showAsAction="always"
+        android:icon="@android:drawable/btn_star_big_on"
+
+
         />
 
     <item
         android:id="@+id/removeFavourites"
         android:title="@string/removeFavouritesDetailActivity"
-        android:orderInCategory="1"
-        app:showAsAction="never"
+        android:orderInCategory="2"
+        app:showAsAction="always"
+        android:icon="@android:drawable/btn_star_big_off"
         />
 </menu>
