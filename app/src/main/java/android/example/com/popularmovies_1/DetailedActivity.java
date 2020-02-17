@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -78,10 +79,10 @@ public class DetailedActivity extends AppCompatActivity {
 
                 favDB.favouritesDao().insertFavourite(favourtiesEntry);
 
-                finish();
             }
         });
 
+            Toast.makeText(DetailedActivity.this,"Added to favourites",Toast.LENGTH_SHORT).show();
         }
 
         else if(id==R.id.removeFavourites){
@@ -95,10 +96,9 @@ public class DetailedActivity extends AppCompatActivity {
 
                     favDB.favouritesDao().deleteFavourite(favourtiesEntry);
 
-                    finish();
                 }
             });
-
+            Toast.makeText(DetailedActivity.this,"Removed from favourites",Toast.LENGTH_SHORT).show();
 
         }
         return super.onOptionsItemSelected(item);

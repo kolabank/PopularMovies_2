@@ -3,6 +3,7 @@ package android.example.com.popularmovies_1;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.example.com.popularmovies_1.adapters.ThumbnailAdapter;
 import android.example.com.popularmovies_1.database.AppDataBase;
 import android.support.annotation.Nullable;
@@ -14,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class FavouritesActivity extends AppCompatActivity {
+public class FavouritesActivity extends AppCompatActivity implements ThumbnailAdapter.ListItemClickListener {
 
    private RecyclerView rv_Favourites;
 
@@ -65,6 +66,8 @@ public class FavouritesActivity extends AppCompatActivity {
 
     public void setupViewModel(){
 
+
+
         int rowCount= favDB.favouritesDao().getCount();
 
         thumbNailArray = new String[rowCount];
@@ -79,7 +82,7 @@ public class FavouritesActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable String[] strings) {
 
-                ThumbnailAdapter thumbnailAdapter = new ThumbnailAdapter(strings);
+                ThumbnailAdapter thumbnailAdapter = new ThumbnailAdapter(strings,FavouritesActivity.this);
 
                 rv_Favourites.setAdapter(thumbnailAdapter);
             }
@@ -87,4 +90,8 @@ public class FavouritesActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+
+    }
 }

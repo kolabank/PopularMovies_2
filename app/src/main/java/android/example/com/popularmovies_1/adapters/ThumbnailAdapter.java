@@ -19,9 +19,16 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
 
     private String[] data;
 
+    final private ListItemClickListener mOnClickListener;
 
-    public ThumbnailAdapter(String[] data){
+    public interface ListItemClickListener{
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    public ThumbnailAdapter(String[] data, ListItemClickListener listener)
+    {
         this.data = data;
+        mOnClickListener = listener;
     }
 
     @NonNull
@@ -53,7 +60,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
     }
 
 
-    class ThumbnailAdapterViewHolder extends RecyclerView.ViewHolder{
+    class ThumbnailAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageView;
         FrameLayout frameLayout;
@@ -63,12 +70,9 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
 
         imageView = itemView.findViewById(R.id.iv_thumbnail);
         frameLayout = itemView.findViewById(R.id.frame_layout);
-        frameLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) context).userItemClick(getAdapterPosition());
-            }
-        });
+
+        itemView.setOnClickListener(this);
+
     }
 
     void bind (int listIndex){
@@ -77,7 +81,13 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
 
     }
 
-}
+        @Override
+        public void onClick(View v) {
+
+         int clickedPosition = getAdapterPosition();
+         mOnClickListener.onListItemClick(clickedPosition);
+        }
+    }
 
 }
 

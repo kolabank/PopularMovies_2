@@ -20,7 +20,7 @@ import java.net.URL;
 
 // The MainActivity implements the ClickViewInterface to allow the recylcer view images to respond to clicks
 
-public class MainActivity extends AppCompatActivity implements ClickViewInterface{
+public class MainActivity extends AppCompatActivity implements ThumbnailAdapter.ListItemClickListener{
 
     private RecyclerView thumbnailList; //RecyclerView is named as thumbnailList
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
     //These arrays hold the string values of the description of the movies
      public static String [] thumbArray, ratingArray, synopsisArray, dateArrray, titleArray;
      public static int[] movieIDArray;
+
 
 
     @Override
@@ -51,16 +52,9 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         topRatedURLString =new UriBuilder().makeURI("top_rated");
 
 
-        //Check for internet connectivity by calling isOnline method
-      //  if (isOnline()==1){
-   //         txtNoInternet.setVisibility(View.VISIBLE);
-     //   }
-
-    //    else if (isOnline()==0){
-   //         txtNoInternet.setVisibility(View.INVISIBLE);
         //The default response (by popularity) when app is run
         new gettingResponse().execute(popularURLString);
-    //    }
+
     }
 
 
@@ -76,11 +70,7 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //Check for internet connection to prevent program from crashing when options are selected when there is internet connectivity
-      //  if (isOnline() == 1) {
-           // txtNoInternet.setVisibility(View.VISIBLE);
 
-      //  } else if(isOnline()==0) {
             if (id == R.id.action_popular) {
                 new gettingResponse().execute(popularURLString);
                 setTitle(R.string.popularMenuTitle);
@@ -102,17 +92,6 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
 // This method checks for internet connectivity
 
-    public int isOnline() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-            int     exitValue = ipProcess.waitFor();
-            return exitValue;
-                    }
-        catch (IOException e)          { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
-            return 1;
-          }
 
 
     //Perform networking activities in background thread
@@ -142,8 +121,9 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
         @Override
         protected void onPostExecute(String[] JSONData) {
             ThumbnailAdapter tAdapter;
+
             assignMethod(JSONData[0]); //Method defined below
-            tAdapter = new ThumbnailAdapter(thumbArray);
+            tAdapter = new ThumbnailAdapter(thumbArray, MainActivity.this);
             thumbnailList.setAdapter(tAdapter);
         }
     }
@@ -170,24 +150,16 @@ public class MainActivity extends AppCompatActivity implements ClickViewInterfac
 
             movieIDArray[i] = jsonUtil.movieIdArray[i];
 
-        //    String  movieIdUri =  new UriBuilder().makeURI2(String.valueOf(movieIDArray[i]),"videos");
-
-        }
-
-
+         }
 
     }
 
-    //To handle click of movie posters
-
     @Override
-    public void userItemClick(int pos) {
-
+    public void onListItemClick(int clickedItemIndex) {
         Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
-        intent.putExtra("ItemPosition", pos);
+        intent.putExtra("ItemPosition", clickedItemIndex);
         startActivity(intent);
-
-        }
+    }
 
     }
 
