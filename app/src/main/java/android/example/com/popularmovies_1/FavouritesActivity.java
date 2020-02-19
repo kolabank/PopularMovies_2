@@ -3,7 +3,6 @@ package android.example.com.popularmovies_1;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.example.com.popularmovies_1.adapters.ThumbnailAdapter;
 import android.example.com.popularmovies_1.database.AppDataBase;
 import android.support.annotation.Nullable;

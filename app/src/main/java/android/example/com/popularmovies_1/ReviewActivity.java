@@ -53,9 +53,8 @@ public class ReviewActivity extends AppCompatActivity {
             URL moviesURL = NetworkUtility.makeUrl(URLString);
 
             try {
-                String[] JSONResponse = {NetworkUtility.urlResponse(moviesURL)};
 
-                return JSONResponse;
+                return new String[]{NetworkUtility.urlResponse(moviesURL)};
 
             } catch (Exception e) {
                 e.printStackTrace();

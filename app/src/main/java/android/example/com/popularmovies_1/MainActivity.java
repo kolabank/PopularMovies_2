@@ -1,9 +1,12 @@
 package android.example.com.popularmovies_1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.example.com.popularmovies_1.adapters.ThumbnailAdapter;
 import android.example.com.popularmovies_1.networking.NetworkUtility;
 import android.example.com.popularmovies_1.networking.UriBuilder;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +15,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.net.URL;
 
 
@@ -53,10 +56,15 @@ public class MainActivity extends AppCompatActivity implements ThumbnailAdapter.
 
 
         //The default response (by popularity) when app is run
-        new gettingResponse().execute(popularURLString);
+
+        if (isNetworkConnected()) {
+            new gettingResponse().execute(popularURLString);
+        }
+        else{
+            txtNoInternet.setVisibility(View.VISIBLE);
+        }
 
     }
-
 
     //To handle selection of sorting either by popularity or top rating
     @Override
@@ -70,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements ThumbnailAdapter.
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        if (isNetworkConnected()) {
 
             if (id == R.id.action_popular) {
                 new gettingResponse().execute(popularURLString);
@@ -80,18 +89,29 @@ public class MainActivity extends AppCompatActivity implements ThumbnailAdapter.
                 new gettingResponse().execute(topRatedURLString);
                 setTitle(R.string.ratingMenuTitle);
                 return true;
-            }
-
-            else if (id==R.id.action_favourites){
+            } else if (id == R.id.action_favourites) {
                 Intent intent = new Intent(MainActivity.this, FavouritesActivity.class);
                 startActivity(intent);
             }
-     //           }
-        return super.onOptionsItemSelected(item);
-    }
+        }
+
+        else{
+
+            txtNoInternet.setVisibility(View.VISIBLE);
+
+        }
+            return super.onOptionsItemSelected(item);
+        }
+
 
 // This method checks for internet connectivity
 
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return  activeNetwork != null && activeNetwork.isConnected();
+    }
 
 
     //Perform networking activities in background thread
@@ -107,9 +127,8 @@ public class MainActivity extends AppCompatActivity implements ThumbnailAdapter.
             URL moviesURL = NetworkUtility.makeUrl(URLString);
 
             try {
-                String[] JSONResponse = {NetworkUtility.urlResponse(moviesURL)};
 
-                return JSONResponse;
+                return new String[]{NetworkUtility.urlResponse(moviesURL)};
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -1,7 +1,6 @@
 package android.example.com.popularmovies_1.adapters;
 
 import android.content.Context;
-import android.example.com.popularmovies_1.MainActivity;
 import android.example.com.popularmovies_1.R;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -42,9 +41,8 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = inflater.inflate(layoutForGridItem, viewGroup, false);
-        ThumbnailAdapterViewHolder viewHolder = new ThumbnailAdapterViewHolder(view, context);
 
-        return viewHolder;
+        return new ThumbnailAdapterViewHolder(view, context);
     }
 
     @Override

@@ -51,9 +51,8 @@ public class TrailerActivity extends AppCompatActivity {
             URL moviesURL = NetworkUtility.makeUrl(URLString);
 
             try {
-                String[] JSONResponse = {NetworkUtility.urlResponse(moviesURL)};
 
-                return JSONResponse;
+                return new String[]{NetworkUtility.urlResponse(moviesURL)};
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -74,7 +73,7 @@ public class TrailerActivity extends AppCompatActivity {
             ArrayAdapter<String> trailerAdapter= new ArrayAdapter<String>(TrailerActivity.this, android.R.layout.simple_list_item_1, trailerName);
             trailerListView.setAdapter(trailerAdapter);
 
-            //Creating the listview listener
+            //Creating the ListView listener
 
             AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener(){
 

@@ -39,5 +39,4 @@ public class FavourtiesEntry {
         return thumbNailUrl;
     }
 
-
 }

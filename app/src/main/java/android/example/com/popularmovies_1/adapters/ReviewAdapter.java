@@ -32,9 +32,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutForReview, viewGroup, false);
 
-        ReviewViewHolder holder = new ReviewViewHolder(view, context);
-
-        return holder;
+        return new ReviewViewHolder(view, context);
     }
 
 

@@ -6,13 +6,6 @@ import android.os.Looper;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import android.os.Handler;
-import android.os.Looper;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
     public class AppExecutors {
 
         private static final Object LOCK = new Object();

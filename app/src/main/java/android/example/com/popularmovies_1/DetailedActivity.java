@@ -26,7 +26,7 @@ public class DetailedActivity extends AppCompatActivity {
 
     String movieIdUri;
 
-    String thumbNailString;
+    private String thumbNailString;
 
     private AppDataBase favDB;
 
@@ -98,6 +98,9 @@ public class DetailedActivity extends AppCompatActivity {
 
                 }
             });
+
+        //    Log.d("tag", favDB.toString());
+
             Toast.makeText(DetailedActivity.this,"Removed from favourites",Toast.LENGTH_SHORT).show();
 
         }
@@ -106,7 +109,7 @@ public class DetailedActivity extends AppCompatActivity {
 
     //Method to set values into the layout views
 
-    public void populateDetailedActivity(int position) {
+    private void populateDetailedActivity(int position) {
 
         String userRating = MainActivity.ratingArray[position];
         tv_DetailedUserRating.setText(getString(R.string.detailedUserRating) + " " + userRating);

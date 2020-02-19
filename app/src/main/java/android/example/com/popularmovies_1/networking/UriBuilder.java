@@ -29,9 +29,7 @@ public class UriBuilder {
             .appendPath(uriPath)
             .appendQueryParameter(API_KEY, API_KEY_value);
 
-    String builtUri = builder.build().toString();
-
-    return builtUri;
+        return builder.build().toString();
 
     }
 
