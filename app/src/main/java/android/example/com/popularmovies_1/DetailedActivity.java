@@ -68,42 +68,74 @@ public class DetailedActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if (id==R.id.addFavourites){
 
 
         final FavourtiesEntry favourtiesEntry = new FavourtiesEntry(movieReference,thumbNailString);
+
+        if (id==R.id.addFavourites){
 
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
 
-                favDB.favouritesDao().insertFavourite(favourtiesEntry);
+                String refExist = favDB.favouritesDao().getExistingThumbNail(thumbNailString);
+                if (refExist==null) {
+                    favDB.favouritesDao().insertFavourite(favourtiesEntry);
 
-            }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(DetailedActivity.this, "Added to Favourites", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    }
+
+                else{
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(DetailedActivity.this, "Already in Favourites", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+                }
         });
 
-            Toast.makeText(DetailedActivity.this,"Added to favourites",Toast.LENGTH_SHORT).show();
         }
 
         else if(id==R.id.removeFavourites){
-
-
-          final FavourtiesEntry favourtiesEntry = new FavourtiesEntry(movieReference,thumbNailString);
 
             AppExecutors.getInstance().diskIO().execute(new Runnable() {
                 @Override
                 public void run() {
 
-                    favDB.favouritesDao().deleteFavourite(favourtiesEntry);
+                    String refExist = favDB.favouritesDao().getExistingThumbNail(thumbNailString);
+                    if (refExist!=null) {
+                        favDB.favouritesDao().deleteFavourite(favourtiesEntry);
 
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(DetailedActivity.this, "Deleted from Favourites", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    else{
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(DetailedActivity.this, "Not in Favourites", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
                 }
             });
 
-        //    Log.d("tag", favDB.toString());
-
-            Toast.makeText(DetailedActivity.this,"Removed from favourites",Toast.LENGTH_SHORT).show();
-
         }
+
         return super.onOptionsItemSelected(item);
     }
 

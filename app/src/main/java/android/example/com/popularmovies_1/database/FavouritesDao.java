@@ -7,6 +7,8 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
+import java.util.List;
+
 @Dao
 public interface FavouritesDao {
 
@@ -20,6 +22,7 @@ public interface FavouritesDao {
     @Query("SELECT COUNT(id) FROM favourites")
     int getCount();
 
+
     @Query("SELECT thumbNailUrl FROM favourites")
     LiveData<String[]> getAllThubNails();
 
@@ -28,5 +31,8 @@ public interface FavouritesDao {
 
     @Query("DELETE FROM favourites")
     void deleteAllFavourites();
+
+    @Query("SELECT thumbNailUrl FROM favourites WHERE thumbNailUrl = :thumbNailUrl")
+    String getExistingThumbNail(String thumbNailUrl);
 
 }
